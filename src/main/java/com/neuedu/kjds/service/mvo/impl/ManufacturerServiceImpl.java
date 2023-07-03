@@ -1,0 +1,22 @@
+package com.neuedu.kjds.service.mvo.impl;
+
+import com.neuedu.kjds.mapper.ManManufacturerMapper;
+import com.neuedu.kjds.service.mvo.ManufacturerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class ManufacturerServiceImpl implements ManufacturerService {
+    @Autowired
+    private ManManufacturerMapper manManufacturerMapper;
+
+    /**
+     * 查询品牌商公司信息及旗下的所有品牌和品牌图片
+     */
+    @Override
+    public List<?> queryManufacturerAndBrand(Integer manId) {
+        return manManufacturerMapper.selectManufacturerAndBrand(manId);
+    }
+}
