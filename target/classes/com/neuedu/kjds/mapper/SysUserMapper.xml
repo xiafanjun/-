@@ -225,7 +225,10 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+    <select id="isExistByUsername" resultType="java.lang.Integer" parameterType="string">
+      select count(USER_ID) from sys_user where username=#{username}
+    </select>
+    <update id="updateByExampleSelective" parameterType="map" >
     update sys_user
     <set >
       <if test="record.userId != null" >
@@ -364,5 +367,8 @@
       PHONE = #{phone,jdbcType=VARCHAR},
       MAN_BUYER_ID = #{manBuyerId,jdbcType=INTEGER}
     where USER_ID = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateLastLoginTime" parameterType="map">
+    update sys_user set LAST_LOGIN=#{lastlogin} where USER_ID=#{userid};
   </update>
 </mapper>
