@@ -16,20 +16,12 @@ public class BrdBrandServiceImpl implements BrdBrandService {
 
     @Autowired
     private BrdBrandMapper brdBrandMapper;
-    @Autowired
+
     //private ImageService imageService;
 
     @Override
-    public boolean savebrd(String brandName, HttpSession session) {
-        SysUser loginUser=(SysUser)session.getAttribute("loginuser");
-        int manId=loginUser.getManBuyerId();
-        BrdBrand brdBrand = new BrdBrand();
-        brdBrand.setNameCn(brandName);
-        brdBrand.setManId(manId);
-        brdBrand.setCreatedBy("system");
-        brdBrand.setLastUpdateBy("system");
-        brdBrand.setCreationDate(new Date());
-        brdBrand.setLastUpdateDate(new Date());
+    public boolean savebrd(BrdBrand brdBrand) {
+
         return brdBrandMapper.insert(brdBrand) == 1;
     }
 

@@ -19,14 +19,14 @@ public class OrderManagementServiceImpl implements OrderManagementService {
     SaoSalesOrderMapper saoSalesOrderMapper;
     @Override
     public KJDSResult getUnpaymentOrder(int size, int current) {
-        PageHelper.startPage(current,size);
+        // PageHelper.startPage(current,size);
         List<OrderDto> orderDtos = saoSalesOrderMapper.selectUnpaymentOrder();
         return KJDSResult.ok(orderDtos);
     }
 
     @Override
     public KJDSResult getUndeliverOrder(int size, int current) {
-        PageHelper.startPage(current,size);
+        // PageHelper.startPage(current,size);
         List<OrderDto> orderDtos = saoSalesOrderMapper.selectUndeliverOrder();
         return KJDSResult.ok(orderDtos);
     }

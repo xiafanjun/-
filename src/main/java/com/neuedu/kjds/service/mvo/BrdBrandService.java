@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 @Service
 public interface BrdBrandService {
     //添加品牌
-    public boolean savebrd(String brandName, HttpSession session);
+    public boolean savebrd(BrdBrand brdBrand);
     //更新品牌
     public boolean updatebrd(BrdBrand brdBrand);
     //删除品牌
