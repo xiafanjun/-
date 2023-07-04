@@ -48,10 +48,10 @@
       <tbody>
 
         <tr>
-          <td id="Man_Name_Cn">globalmarket</td>
-          <td id="Man_Name_En">goblemarket</td>
-          <td id="Man_Report_Type">asd</td>
-          <td id="Man_Report_URL">www.hihd.com</td>
+          <td id="Man_Name_Cn"></td>
+          <td id="Man_Name_En"></td>
+          <td id="Man_Report_Type"></td>
+          <td id="Man_Report_URL"></td>
           <td>
             <div class="inline position-relative">
               <button class="btn btn-mini btn-info" onclick="goEdit()"><i class="icon-edit"></i></button>
@@ -130,6 +130,7 @@
 
     <script>
     $(function(){
+        // alert("入口函数");
         getManufacturerAndBrand();
    /*init webuploader*/
    var $list=$("#thelist");   //这几个初始化全局的百度文档上没说明，好蛋疼。
@@ -248,14 +249,17 @@
         window.location.href = "brand-addbrand.html";
       }
       function getManufacturerAndBrand(){
-            var url="/mvo//getmanfacturerandbrand";
+        // alert('查询公司和品牌');
+            var url="/mvo/getmanfacturerandbrand";
             $.ajax({
-              type: "GET",
-              url: url,
-              dataType:'json',
+                type: "GET",
+                url: url,
+                dataType:'json',
                 success: function(data){
+                    alert('返回响应');
                     //取出返回的业务数据集合
                     var branddata=data.data;
+                    alert(branddata);
                     //判断是否有品牌信息的标志
                     var flag=false;
                     if(data.status==200){//请求成功执行响应返回查询的数据
