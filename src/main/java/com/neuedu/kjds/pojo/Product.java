@@ -3,6 +3,7 @@ package com.neuedu.kjds.pojo;
 import java.math.BigDecimal;
 import java.util.Date;
 
+
 public class Product {
     private Integer proId;
 

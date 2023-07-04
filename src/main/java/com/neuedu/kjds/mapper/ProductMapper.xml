@@ -4,21 +4,21 @@
 
 
   <insert id="addProduct" parameterType="com.neuedu.kjds.pojo.Product">
-        INSERT INTO product (SKU_CD, BRD_ID, MAN_ID, TITLE, UPC, EAN, MODEL, WARRANTY_DAY, RETAIL_PRICE, CREATED_BY, CREATION_DATE, LAST_UPDATE_BY, LAST_UPDATE_DATE, CALL_CNT, REMARK, STS_CD, MININUM_RETAIL_PRICE, REPLENISHMENT_PERIOD, KEY_WORDS, WARRANTY, TIME_UNIT, STOCKSETING)
-        VALUES (#{skuCd}, #{brdId}, #{manId}, #{title}, #{upc}, #{ean}, #{model}, #{warrantyDay}, #{retailPrice}, #{createdBy}, #{creationDate}, #{lastUpdateBy}, #{lastUpdateDate}, #{callCnt}, #{remark}, #{stsCd}, #{minimumRetailPrice}, #{replenishmentPeriod}, #{keyWords}, #{warranty}, #{timeUnit}, #{stockSetting})
+        INSERT INTO pro_product (PRO_ID, SKU_CD, BRD_ID, MAN_ID, TITLE, UPC, EAN, MODEL, WARRANTY_DAY, RETAIL_PRICE, CREATED_BY, CREATION_DATE, LAST_UPDATE_BY, LAST_UPDATE_DATE, CALL_CNT, REMARK, STS_CD, MININUM_RETAIL_PRICE, REPLENISHMENT_PERIOD, KEY_WORDS, WARRANTY, TIME_UNIT, STOCKSETING)
+        VALUES (#{proId}, #{skuCd}, #{brdId}, #{manId}, #{title}, #{upc}, #{ean}, #{model}, #{warrantyDay}, #{retailPrice}, #{createdBy}, #{creationDate}, #{lastUpdateBy}, #{lastUpdateDate}, #{callCnt}, #{remark}, #{stsCd}, #{minimumRetailPrice}, #{replenishmentPeriod}, #{keyWords}, #{warranty}, #{timeUnit}, #{stockSetting})
    </insert>
 
   <update id="updateProduct">
-        UPDATE product (SKU_CD, BRD_ID, MAN_ID, TITLE, UPC, EAN, MODEL, WARRANTY_DAY, RETAIL_PRICE, CREATED_BY, CREATION_DATE, LAST_UPDATE_BY, LAST_UPDATE_DATE, CALL_CNT, REMARK, STS_CD, MININUM_RETAIL_PRICE, REPLENISHMENT_PERIOD, KEY_WORDS, WARRANTY, TIME_UNIT, STOCKSETING)
+        UPDATE pro_product (SKU_CD, BRD_ID, MAN_ID, TITLE, UPC, EAN, MODEL, WARRANTY_DAY, RETAIL_PRICE, CREATED_BY, CREATION_DATE, LAST_UPDATE_BY, LAST_UPDATE_DATE, CALL_CNT, REMARK, STS_CD, MININUM_RETAIL_PRICE, REPLENISHMENT_PERIOD, KEY_WORDS, WARRANTY, TIME_UNIT, STOCKSETING)
         VALUES (#{skuCd}, #{brdId}, #{manId}, #{title}, #{upc}, #{ean}, #{model}, #{warrantyDay}, #{retailPrice}, #{createdBy}, #{creationDate}, #{lastUpdateBy}, #{lastUpdateDate}, #{callCnt}, #{remark}, #{stsCd}, #{minimumRetailPrice}, #{replenishmentPeriod}, #{keyWords}, #{warranty}, #{timeUnit}, #{stockSetting})
         WHERE PRO_ID = #{proId}
   </update>
 
   <delete id="deleteProduct">
-        DELETE FROM product WHERE PRO_ID = #{id}
+        DELETE FROM pro_product WHERE PRO_ID = #{id}
   </delete>
 
   <select id="getProductById" resultType="com.neuedu.kjds.pojo.Product">
-        SELECT * FROM product WHERE PRO_ID = #{id}
+        SELECT * FROM pro_product WHERE PRO_ID = #{id}
   </select>
 </mapper>
