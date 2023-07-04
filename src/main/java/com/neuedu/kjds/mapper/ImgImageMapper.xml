@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.kjds.mapper.ImgImageMapper">
+  <resultMap id="BaseResultMap" type="com.neuedu.kjds.pojo.ImgImage">
+    <id column="IMG_ID" jdbcType="INTEGER" property="imgId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="WIDTH" jdbcType="INTEGER" property="width" />
+    <result column="HEIGHT" jdbcType="INTEGER" property="height" />
+    <result column="URI" jdbcType="VARCHAR" property="uri" />
+    <result column="TYPE_CD" jdbcType="CHAR" property="typeCd" />
+    <result column="ENTITY_ID" jdbcType="INTEGER" property="entityId" />
+    <result column="ENTITY_CD" jdbcType="VARCHAR" property="entityCd" />
+    <result column="SEQ_NO" jdbcType="INTEGER" property="seqNo" />
+    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="CREATION_DATE" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="LAST_UPDATE_BY" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="LAST_UPDATE_DATE" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="CALL_CNT" jdbcType="INTEGER" property="callCnt" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="STS_CD" jdbcType="CHAR" property="stsCd" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    IMG_ID, NAME, WIDTH, HEIGHT, URI, TYPE_CD, ENTITY_ID, ENTITY_CD, SEQ_NO, CREATED_BY, 
+    CREATION_DATE, LAST_UPDATE_BY, LAST_UPDATE_DATE, CALL_CNT, REMARK, STS_CD
+  </sql>
+  <select id="selectByExample" parameterType="com.neuedu.kjds.pojo.ImgImageExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from img_image
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from img_image
+    where IMG_ID = #{imgId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from img_image
+    where IMG_ID = #{imgId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.neuedu.kjds.pojo.ImgImageExample">
+    delete from img_image
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.neuedu.kjds.pojo.ImgImage">
+    insert into img_image (IMG_ID, NAME, WIDTH, 
+      HEIGHT, URI, TYPE_CD, ENTITY_ID, 
+      ENTITY_CD, SEQ_NO, CREATED_BY, 
+      CREATION_DATE, LAST_UPDATE_BY, LAST_UPDATE_DATE, 
+      CALL_CNT, REMARK, STS_CD
+      )
+    values (#{imgId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{width,jdbcType=INTEGER}, 
+      #{height,jdbcType=INTEGER}, #{uri,jdbcType=VARCHAR}, #{typeCd,jdbcType=CHAR}, #{entityId,jdbcType=INTEGER}, 
+      #{entityCd,jdbcType=VARCHAR}, #{seqNo,jdbcType=INTEGER}, #{createdBy,jdbcType=VARCHAR}, 
+      #{creationDate,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=TIMESTAMP}, 
+      #{callCnt,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{stsCd,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.neuedu.kjds.pojo.ImgImage">
+    insert into img_image
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="imgId != null">
+        IMG_ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="width != null">
+        WIDTH,
+      </if>
+      <if test="height != null">
+        HEIGHT,
+      </if>
+      <if test="uri != null">
+        URI,
+      </if>
+      <if test="typeCd != null">
+        TYPE_CD,
+      </if>
+      <if test="entityId != null">
+        ENTITY_ID,
+      </if>
+      <if test="entityCd != null">
+        ENTITY_CD,
+      </if>
+      <if test="seqNo != null">
+        SEQ_NO,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="creationDate != null">
+        CREATION_DATE,
+      </if>
+      <if test="lastUpdateBy != null">
+        LAST_UPDATE_BY,
+      </if>
+      <if test="lastUpdateDate != null">
+        LAST_UPDATE_DATE,
+      </if>
+      <if test="callCnt != null">
+        CALL_CNT,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="stsCd != null">
+        STS_CD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="imgId != null">
+        #{imgId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="width != null">
+        #{width,jdbcType=INTEGER},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=INTEGER},
+      </if>
+      <if test="uri != null">
+        #{uri,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCd != null">
+        #{typeCd,jdbcType=CHAR},
+      </if>
+      <if test="entityId != null">
+        #{entityId,jdbcType=INTEGER},
+      </if>
+      <if test="entityCd != null">
+        #{entityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="seqNo != null">
+        #{seqNo,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        #{stsCd,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.neuedu.kjds.pojo.ImgImageExample" resultType="java.lang.Long">
+    select count(*) from img_image
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update img_image
+    <set>
+      <if test="record.imgId != null">
+        IMG_ID = #{record.imgId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.width != null">
+        WIDTH = #{record.width,jdbcType=INTEGER},
+      </if>
+      <if test="record.height != null">
+        HEIGHT = #{record.height,jdbcType=INTEGER},
+      </if>
+      <if test="record.uri != null">
+        URI = #{record.uri,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeCd != null">
+        TYPE_CD = #{record.typeCd,jdbcType=CHAR},
+      </if>
+      <if test="record.entityId != null">
+        ENTITY_ID = #{record.entityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.entityCd != null">
+        ENTITY_CD = #{record.entityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seqNo != null">
+        SEQ_NO = #{record.seqNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdBy != null">
+        CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creationDate != null">
+        CREATION_DATE = #{record.creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateBy != null">
+        LAST_UPDATE_BY = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateDate != null">
+        LAST_UPDATE_DATE = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.callCnt != null">
+        CALL_CNT = #{record.callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stsCd != null">
+        STS_CD = #{record.stsCd,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update img_image
+    set IMG_ID = #{record.imgId,jdbcType=INTEGER},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      WIDTH = #{record.width,jdbcType=INTEGER},
+      HEIGHT = #{record.height,jdbcType=INTEGER},
+      URI = #{record.uri,jdbcType=VARCHAR},
+      TYPE_CD = #{record.typeCd,jdbcType=CHAR},
+      ENTITY_ID = #{record.entityId,jdbcType=INTEGER},
+      ENTITY_CD = #{record.entityCd,jdbcType=VARCHAR},
+      SEQ_NO = #{record.seqNo,jdbcType=INTEGER},
+      CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      CREATION_DATE = #{record.creationDate,jdbcType=TIMESTAMP},
+      LAST_UPDATE_BY = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      LAST_UPDATE_DATE = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      CALL_CNT = #{record.callCnt,jdbcType=INTEGER},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      STS_CD = #{record.stsCd,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.neuedu.kjds.pojo.ImgImage">
+    update img_image
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="width != null">
+        WIDTH = #{width,jdbcType=INTEGER},
+      </if>
+      <if test="height != null">
+        HEIGHT = #{height,jdbcType=INTEGER},
+      </if>
+      <if test="uri != null">
+        URI = #{uri,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCd != null">
+        TYPE_CD = #{typeCd,jdbcType=CHAR},
+      </if>
+      <if test="entityId != null">
+        ENTITY_ID = #{entityId,jdbcType=INTEGER},
+      </if>
+      <if test="entityCd != null">
+        ENTITY_CD = #{entityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="seqNo != null">
+        SEQ_NO = #{seqNo,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        CREATION_DATE = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        LAST_UPDATE_BY = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        LAST_UPDATE_DATE = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        CALL_CNT = #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        STS_CD = #{stsCd,jdbcType=CHAR},
+      </if>
+    </set>
+    where IMG_ID = #{imgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.neuedu.kjds.pojo.ImgImage">
+    update img_image
+    set NAME = #{name,jdbcType=VARCHAR},
+      WIDTH = #{width,jdbcType=INTEGER},
+      HEIGHT = #{height,jdbcType=INTEGER},
+      URI = #{uri,jdbcType=VARCHAR},
+      TYPE_CD = #{typeCd,jdbcType=CHAR},
+      ENTITY_ID = #{entityId,jdbcType=INTEGER},
+      ENTITY_CD = #{entityCd,jdbcType=VARCHAR},
+      SEQ_NO = #{seqNo,jdbcType=INTEGER},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATION_DATE = #{creationDate,jdbcType=TIMESTAMP},
+      LAST_UPDATE_BY = #{lastUpdateBy,jdbcType=VARCHAR},
+      LAST_UPDATE_DATE = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      CALL_CNT = #{callCnt,jdbcType=INTEGER},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      STS_CD = #{stsCd,jdbcType=CHAR}
+    where IMG_ID = #{imgId,jdbcType=INTEGER}
+  </update>
+</mapper>
