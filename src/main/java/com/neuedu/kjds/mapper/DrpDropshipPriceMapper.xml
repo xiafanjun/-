@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.kjds.mapper.DrpDropshipPriceMapper">
+
+    <resultMap type="com.neuedu.kjds.pojo.DrpDropshipPrice" id="DrpDropshipPriceMap">
+        <result property="drpId" column="DRP_ID" jdbcType="INTEGER"/>
+        <result property="ofpId" column="OFP_ID" jdbcType="INTEGER"/>
+        <result property="dsrId" column="DSR_ID" jdbcType="INTEGER"/>
+        <result property="warId" column="WAR_ID" jdbcType="INTEGER"/>
+        <result property="createdBy" column="CREATED_BY" jdbcType="VARCHAR"/>
+        <result property="creationDate" column="CREATION_DATE" jdbcType="TIMESTAMP"/>
+        <result property="lastUpdateBy" column="LAST_UPDATE_BY" jdbcType="VARCHAR"/>
+        <result property="lastUpdateDate" column="LAST_UPDATE_DATE" jdbcType="TIMESTAMP"/>
+        <result property="callCnt" column="CALL_CNT" jdbcType="INTEGER"/>
+        <result property="remark" column="REMARK" jdbcType="VARCHAR"/>
+        <result property="stsCd" column="STS_CD" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="DrpDropshipPriceMap">
+        select
+          DRP_ID, OFP_ID, DSR_ID, WAR_ID, CREATED_BY, CREATION_DATE, LAST_UPDATE_BY, LAST_UPDATE_DATE, CALL_CNT, REMARK, STS_CD
+        from drp_dropship_price
+        where DRP_ID = #{drpId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="DrpDropshipPriceMap">
+        select
+          DRP_ID, OFP_ID, DSR_ID, WAR_ID, CREATED_BY, CREATION_DATE, LAST_UPDATE_BY, LAST_UPDATE_DATE, CALL_CNT, REMARK, STS_CD
+        from drp_dropship_price
+        <where>
+            <if test="drpId != null">
+                and DRP_ID = #{drpId}
+            </if>
+            <if test="ofpId != null">
+                and OFP_ID = #{ofpId}
+            </if>
+            <if test="dsrId != null">
+                and DSR_ID = #{dsrId}
+            </if>
+            <if test="warId != null">
+                and WAR_ID = #{warId}
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                and CREATED_BY = #{createdBy}
+            </if>
+            <if test="creationDate != null">
+                and CREATION_DATE = #{creationDate}
+            </if>
+            <if test="lastUpdateBy != null and lastUpdateBy != ''">
+                and LAST_UPDATE_BY = #{lastUpdateBy}
+            </if>
+            <if test="lastUpdateDate != null">
+                and LAST_UPDATE_DATE = #{lastUpdateDate}
+            </if>
+            <if test="callCnt != null">
+                and CALL_CNT = #{callCnt}
+            </if>
+            <if test="remark != null and remark != ''">
+                and REMARK = #{remark}
+            </if>
+            <if test="stsCd != null and stsCd != ''">
+                and STS_CD = #{stsCd}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from drp_dropship_price
+        <where>
+            <if test="drpId != null">
+                and DRP_ID = #{drpId}
+            </if>
+            <if test="ofpId != null">
+                and OFP_ID = #{ofpId}
+            </if>
+            <if test="dsrId != null">
+                and DSR_ID = #{dsrId}
+            </if>
+            <if test="warId != null">
+                and WAR_ID = #{warId}
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                and CREATED_BY = #{createdBy}
+            </if>
+            <if test="creationDate != null">
+                and CREATION_DATE = #{creationDate}
+            </if>
+            <if test="lastUpdateBy != null and lastUpdateBy != ''">
+                and LAST_UPDATE_BY = #{lastUpdateBy}
+            </if>
+            <if test="lastUpdateDate != null">
+                and LAST_UPDATE_DATE = #{lastUpdateDate}
+            </if>
+            <if test="callCnt != null">
+                and CALL_CNT = #{callCnt}
+            </if>
+            <if test="remark != null and remark != ''">
+                and REMARK = #{remark}
+            </if>
+            <if test="stsCd != null and stsCd != ''">
+                and STS_CD = #{stsCd}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="drpId" useGeneratedKeys="true">
+        insert into drp_dropship_price(OFP_ID, DSR_ID, WAR_ID, CREATED_BY, CREATION_DATE, LAST_UPDATE_BY, LAST_UPDATE_DATE, CALL_CNT, REMARK, STS_CD)
+        values (#{ofpId}, #{dsrId}, #{warId}, #{createdBy}, #{creationDate}, #{lastUpdateBy}, #{lastUpdateDate}, #{callCnt}, #{remark}, #{stsCd})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="drpId" useGeneratedKeys="true">
+        insert into drp_dropship_price(OFP_ID, DSR_ID, WAR_ID, CREATED_BY, CREATION_DATE, LAST_UPDATE_BY, LAST_UPDATE_DATE, CALL_CNT, REMARK, STS_CD)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.ofpId}, #{entity.dsrId}, #{entity.warId}, #{entity.createdBy}, #{entity.creationDate}, #{entity.lastUpdateBy}, #{entity.lastUpdateDate}, #{entity.callCnt}, #{entity.remark}, #{entity.stsCd})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="drpId" useGeneratedKeys="true">
+        insert into drp_dropship_price(OFP_ID, DSR_ID, WAR_ID, CREATED_BY, CREATION_DATE, LAST_UPDATE_BY, LAST_UPDATE_DATE, CALL_CNT, REMARK, STS_CD)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.ofpId}, #{entity.dsrId}, #{entity.warId}, #{entity.createdBy}, #{entity.creationDate}, #{entity.lastUpdateBy}, #{entity.lastUpdateDate}, #{entity.callCnt}, #{entity.remark}, #{entity.stsCd})
+        </foreach>
+        on duplicate key update
+        OFP_ID = values(OFP_ID),
+        DSR_ID = values(DSR_ID),
+        WAR_ID = values(WAR_ID),
+        CREATED_BY = values(CREATED_BY),
+        CREATION_DATE = values(CREATION_DATE),
+        LAST_UPDATE_BY = values(LAST_UPDATE_BY),
+        LAST_UPDATE_DATE = values(LAST_UPDATE_DATE),
+        CALL_CNT = values(CALL_CNT),
+        REMARK = values(REMARK),
+        STS_CD = values(STS_CD)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update drp_dropship_price
+        <set>
+            <if test="ofpId != null">
+                OFP_ID = #{ofpId},
+            </if>
+            <if test="dsrId != null">
+                DSR_ID = #{dsrId},
+            </if>
+            <if test="warId != null">
+                WAR_ID = #{warId},
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                CREATED_BY = #{createdBy},
+            </if>
+            <if test="creationDate != null">
+                CREATION_DATE = #{creationDate},
+            </if>
+            <if test="lastUpdateBy != null and lastUpdateBy != ''">
+                LAST_UPDATE_BY = #{lastUpdateBy},
+            </if>
+            <if test="lastUpdateDate != null">
+                LAST_UPDATE_DATE = #{lastUpdateDate},
+            </if>
+            <if test="callCnt != null">
+                CALL_CNT = #{callCnt},
+            </if>
+            <if test="remark != null and remark != ''">
+                REMARK = #{remark},
+            </if>
+            <if test="stsCd != null and stsCd != ''">
+                STS_CD = #{stsCd},
+            </if>
+        </set>
+        where DRP_ID = #{drpId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from drp_dropship_price where DRP_ID = #{drpId}
+    </delete>
+
+</mapper>
+
