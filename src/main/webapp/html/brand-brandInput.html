@@ -120,7 +120,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">保存</button>
+        <button type="button" class="btn btn-primary save" data-dismiss="modal">保存</button>
       </div>
     </div>
   </div>
@@ -223,13 +223,11 @@
    uploader.on( 'uploadComplete', function( file ) {
        $( '#'+file.id ).find('.progress').remove();
    });
-      $btn.on( 'click', function() {
+   $btn.on( 'click', function() {
         console.log("上传...");
         uploader.upload();
         console.log("上传成功");
       });
-
-
 
       $('.btn-danger').click(function(){
         bootbox.alert("删除成功")
@@ -241,7 +239,9 @@
             $('.input').prop('checked',false);
           }
        })
+        $('.save').click(function(){
 
+        })
 
   });
 
@@ -278,7 +278,7 @@
                                 flag=true;
                             }
                         }
-                        if(flag){
+                        if(true){
                             for(var i=0;i<branddata.length;i++){
                                 //只遍历出图片顺序号为1的图片及品牌，一个品牌只显示一张图片
                                 if(branddata[i].SEQ_NO=='1'){

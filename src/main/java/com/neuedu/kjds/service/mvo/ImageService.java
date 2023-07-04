@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpSession;
 
 @Service
-public interface BrdBrandService {
+public interface ImageService {
     //添加品牌
-    public boolean savebrd(String brandName, HttpSession session);
+    public boolean saveImage(String brandName, HttpSession session);
     //更新品牌
     public boolean updatebrd(BrdBrand brdBrand);
     //删除品牌

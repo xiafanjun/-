@@ -12,15 +12,13 @@ import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 @Service
-public class BrdBrandServiceImpl implements BrdBrandService {
+public class ImageServiceImpl implements ImageService {
 
     @Autowired
     private BrdBrandMapper brdBrandMapper;
-    @Autowired
-    private ImageService imageService;
 
     @Override
-    public boolean savebrd(String brandName, HttpSession session) {
+    public boolean saveImage(String brandName, HttpSession session) {
         SysUser loginUser=(SysUser)session.getAttribute("loginuser");
         int manId=loginUser.getManBuyerId();
         BrdBrand brdBrand = new BrdBrand();

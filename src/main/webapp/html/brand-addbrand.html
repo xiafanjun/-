@@ -176,37 +176,36 @@
         initToolbarBootstrapBindings();
         $('#editor').wysiwyg({ fileUploadError: showErrorAlert} );
         $('#btnsave').click(function () {
-            window.location.href = "brand-brandInput.html";
-            // var url="/mvo/addmanfacturerandbrand";
-            // var nameCn = $("#form-field-1").val();
-            // var nameEn = $("#form-field-2").val();
-            // var description = $("#editor").val();
-            // var gmcReportType = $("#form-field-3").val();
-            // var gmcReportUrl = $("#form-field-4").val();
-            // var info = {
-            //     'nameCn':nameCn.toString(),
-            //     'nameEn':nameEn.toString(),
-            //     'description':description.toString(),
-            //     'gmcReportType':gmcReportType.toString(),
-            //     'gmcReportUrl':gmcReportUrl.toString()
-            // }
-            // // var newinfo = (JSON.stringify(info));
-            // console.log(decodeURIComponent(JSON.stringify(info)))
-            // $.ajax({
-            //     type: "GET",
-            //     url: url,
-            //     data: decodeURIComponent(JSON.stringify(info)),
-            //     dataType:'json',
-            //     contentType: 'application/json',
-            //     cache: false,
-            //     success: function(){
-            //         // alert("成功")
-            //         window.location.href = "brand-brandInput.html";
-            //     },
-            //     error: function (e) {
-            //         alert("失败")
-            //     }
-            // })
+            // window.location.href = "brand-brandInput.html";
+            var url="/mvo/addmanfacturer";
+            var nameCn = $("#form-field-1").val();
+            var nameEn = $("#form-field-2").val();
+            var description = $("#editor").val();
+            var gmcReportType = $("#form-field-3").val();
+            var gmcReportUrl = $("#form-field-4").val();
+            var info = {
+                'nameCn':nameCn.toString(),
+                'nameEn':nameEn.toString(),
+                'description':description.toString(),
+                'gmcReportType':gmcReportType.toString(),
+                'gmcReportUrl':gmcReportUrl.toString()
+            }
+            console.log(JSON.stringify(info))
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: JSON.stringify(info),
+                dataType:'json',
+                contentType: 'application/json',
+                success: function(){
+                    // alert("成功")
+                    window.location.href = "brand-brandInput.html";
+                },
+                error: function (e) {
+                    // alert("失败")
+                    window.location.href = "brand-brandInput.html";
+                }
+            })
 
         })
     </script>

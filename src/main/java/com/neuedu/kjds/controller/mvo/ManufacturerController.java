@@ -40,13 +40,15 @@ public class ManufacturerController {
     }
 
     /**
-     * 根据会话中登录用户的公司id查询公司及品牌
+     * 新增品牌商信息
      */
     @RequestMapping("/addmanfacturer")
     @ResponseBody
     public KJDSResult addmanfacturer(@RequestBody ManManufacturer manManufacturer){
         System.out.println("测试添加品牌商信息controller");
         manManufacturer.setCreatedBy("system");
+        manManufacturer.setCreationDate(new Date());
+        manManufacturer.setLastUpdateBy("system");
         manManufacturer.setLastUpdateDate(new Date());
         boolean flag = manufacturerService.save(manManufacturer);
         if (flag) {
@@ -56,6 +58,9 @@ public class ManufacturerController {
         }
     }
 
+    /**
+     * 修改品牌商信息
+     */
     @RequestMapping("/updatemanfacturer")
     @ResponseBody
     public KJDSResult updatemanfacturer(@RequestBody ManManufacturer manManufacturer){
@@ -69,6 +74,9 @@ public class ManufacturerController {
         }
     }
 
+    /**
+     * 删除品牌商信息
+     */
     @RequestMapping("/deletemanfacturer")
     @ResponseBody
     public KJDSResult deletemanfacturer(HttpSession session){

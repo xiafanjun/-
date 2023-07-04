@@ -49,7 +49,7 @@
 		</javaClientGenerator>
 		<!-- 指定数据库表 -->
 		
-		<table tableName="brd_brand"></table>
+		<table tableName="img_image"></table>
 <!--		<table tableName="man_manufacturer"></table>-->
 	</context>
 </generatorConfiguration>
