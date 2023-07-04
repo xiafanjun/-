@@ -130,7 +130,7 @@
           </thead>
 
           <tbody>
-            <tr>
+           <!--  <tr>
               <td class="center">
                 <label><input type="checkbox" class="input"><span class="lbl"></span></label>
               </td>
@@ -142,9 +142,7 @@
               <td>
 
               </td>
-              <td>
-                <button class="btn btn-minier btn-purple send-out">发货</button>
-              </td>
+              <td><button class="btn btn-minier btn-purple send-out">发货</button></td>
             </tr>
 
 
@@ -163,7 +161,7 @@
               <td>
                 <button class="btn btn-minier btn-purple send-out">发货</button>
               </td>
-            </tr>
+            </tr> -->
 
                   </tbody>
             </table>
@@ -428,6 +426,26 @@
 
 
     <script>
+      function getundeliver() {
+        $.get("/mvoorder/undeliver/10/1",{},function (data) {
+          for(var index in data.data){
+
+            $("#AwaitingShipment table").append('<tr>\n' +
+                    '              <td class="center">\n' +
+                    '                <label><input type="checkbox" class="input"><span class="lbl"></span></label>\n' +
+                    '              </td>\n' +
+                    '              <td><a href="bvo-goodsdetail.html">' + data.data[index].title + '</a></td>\n' +
+                    '              <td>' + data.data[index].price + '</td>\n' +
+                    '              <td class="hidden-480">' + data.data[index].qty +'</td>\n' +
+                    '              <td class="">' + data.data[index].skucd + '</td>\n' +
+                    '              <td class="hidden-480">' + data.data[index].creationdate + '</td>\n' +
+                    '              <td>' + data.data[index].orderno+
+                    '              </td>' +
+                    ' <td><button class="btn btn-minier btn-purple send-out" onclick="dodeliver(' + data.data[index].saoid + ')">发货</button></td>' +
+                    '            </tr>');
+          }
+        });
+      }
 
       $(function(){
 
@@ -449,12 +467,39 @@
           bootbox.alert("订单已取消!");
         })
 
+        $.get("/mvoorder/unpayment/10/1",{},function (data) {
+          for(var index in data.data){
 
+            $("#AwaitingPayment table").append('<tr>\n' +
+                    '              <td class="center">\n' +
+                    '                <label><input type="checkbox" class="input"><span class="lbl"></span></label>\n' +
+                    '              </td>\n' +
+                    '              <td><a href="bvo-goodsdetail.html">' + data.data[index].title + '</a></td>\n' +
+                    '              <td>' + data.data[index].price + '</td>\n' +
+                    '              <td class="hidden-480">' + data.data[index].qty +'</td>\n' +
+                    '              <td class="">' + data.data[index].skucd + '</td>\n' +
+                    '              <td class="hidden-480">' + data.data[index].creationdate + '</td>\n' +
+                    '              <td>' + data.data[index].orderno+
+                    '              </td>' +
+                    '\n' +
+                    '            </tr>');
+          }
+        });
 
-
+        getundeliver();
 
 })
+  function dodeliver(saoid) {
+    $.post("/mvoorder/dodeliver/" + saoid,{},function (data) {
+      if (data.status == 200){
+        alert("发货成功")
+        getundeliver();
+      }else{
+        alert("发货失败")
+      }
+    });
 
+  }
 
 
     </script>

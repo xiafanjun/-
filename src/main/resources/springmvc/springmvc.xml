@@ -13,5 +13,12 @@
     <mvc:resources location="/css/" mapping="/css/**"></mvc:resources>
     <mvc:resources location="/html/" mapping="/html/**"></mvc:resources>
     <mvc:resources location="/js/" mapping="/js/**"></mvc:resources>
-
+    <!-- 文件上传
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+    <!-- 设置上传文件的最大尺寸为5MB
+    <property name="maxUploadSize">
+        <value>5242880</value>
+    </property>
+</bean>-->
 </beans>

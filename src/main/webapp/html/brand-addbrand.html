@@ -57,13 +57,13 @@
               </div>
             </div>
            <div class="control-group">
-                  <label class="control-label" for="form-field-1">Company Name<br>公司名称(英)</label>
+                  <label class="control-label" for="form-field-2">Company Name<br>公司名称(英)</label>
                   <div class="controls">
-                    <input type="text" id="form-field-1" >
+                    <input type="text" id="form-field-2" >
                   </div>
                 </div>
             <div class="control-group">
-              <label class="control-label" for="form-field-1">Brief Introduction<br>公司简介</label>
+              <label class="control-label" for="editor">Brief Introduction<br>公司简介</label>
               <div class="controls">
                   <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
                       <div class="btn-group">
@@ -113,16 +113,16 @@
             </div>
 
             <div class="control-group">
-              <label class="control-label" for="form-field-1">GMC Report Type<br> 品牌商认证类型</label>
+              <label class="control-label" for="form-field-3">GMC Report Type<br> 品牌商认证类型</label>
               <div class="controls">
-                <input type="text" id="form-field-1">
+                <input type="text" id="form-field-3">
               </div>
             </div>
 
             <div class="control-group">
-              <label class="control-label" for="form-field-1">GMC Report Url<br>证书地址</label>
+              <label class="control-label" for="form-field-4">GMC Report Url<br>证书地址</label>
               <div class="controls">
-                <input type="text" id="form-field-1">
+                <input type="text" id="form-field-4">
               </div>
             </div>
 
@@ -177,6 +177,37 @@
         $('#editor').wysiwyg({ fileUploadError: showErrorAlert} );
         $('#btnsave').click(function () {
             window.location.href = "brand-brandInput.html";
+            // var url="/mvo/addmanfacturerandbrand";
+            // var nameCn = $("#form-field-1").val();
+            // var nameEn = $("#form-field-2").val();
+            // var description = $("#editor").val();
+            // var gmcReportType = $("#form-field-3").val();
+            // var gmcReportUrl = $("#form-field-4").val();
+            // var info = {
+            //     'nameCn':nameCn.toString(),
+            //     'nameEn':nameEn.toString(),
+            //     'description':description.toString(),
+            //     'gmcReportType':gmcReportType.toString(),
+            //     'gmcReportUrl':gmcReportUrl.toString()
+            // }
+            // // var newinfo = (JSON.stringify(info));
+            // console.log(decodeURIComponent(JSON.stringify(info)))
+            // $.ajax({
+            //     type: "GET",
+            //     url: url,
+            //     data: decodeURIComponent(JSON.stringify(info)),
+            //     dataType:'json',
+            //     contentType: 'application/json',
+            //     cache: false,
+            //     success: function(){
+            //         // alert("成功")
+            //         window.location.href = "brand-brandInput.html";
+            //     },
+            //     error: function (e) {
+            //         alert("失败")
+            //     }
+            // })
+
         })
     </script>
     </body>
