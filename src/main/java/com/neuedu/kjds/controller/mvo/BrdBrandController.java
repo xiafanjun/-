@@ -1,9 +1,7 @@
 package com.neuedu.kjds.controller.mvo;
 
 import com.neuedu.kjds.pojo.BrdBrand;
-import com.neuedu.kjds.pojo.SysUser;
 import com.neuedu.kjds.service.mvo.BrdBrandService;
-import com.neuedu.kjds.service.mvo.ImageService;
 import com.neuedu.kjds.util.KJDSResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,12 +21,12 @@ public class BrdBrandController {
     private BrdBrandService brdBrandService;
 
     @Autowired
-    private ImageService imageService;
+    //private ImageService imageService;
 
     //添加品牌
     @RequestMapping("/addBrdBrand")
     @ResponseBody
-    public KJDSResult addBrdBrand(@RequestParam(value = "brandName") String brandName, @RequestParam(value = "brandLogo") String brandLogo, HttpSession session){
+    public KJDSResult addBrdBrand(@RequestParam(value = "brandName") String brandName, HttpSession session){
         System.out.println("测试添加品牌信息controller");
         boolean flag = brdBrandService.savebrd(brandName,session);
         if (flag) {

@@ -46,6 +46,7 @@ public class ManufacturerController {
     @ResponseBody
     public KJDSResult addmanfacturer(@RequestBody ManManufacturer manManufacturer){
         System.out.println("测试添加品牌商信息controller");
+        manManufacturer.setStsCd("A");
         manManufacturer.setCreatedBy("system");
         manManufacturer.setCreationDate(new Date());
         manManufacturer.setLastUpdateBy("system");
