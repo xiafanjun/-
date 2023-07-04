@@ -60,7 +60,7 @@ public class SysUserServiceImp implements SysUserService {
     public KJDSResult register(NewUser newUser, HttpSession session) {
         String serverCode = (String)session.getAttribute("code");
         String userCode = newUser.getCode().toLowerCase().trim();
-        //if (serverCode != null && serverCode.toLowerCase().equals(userCode)){ // 验证码正确
+        if (serverCode != null && serverCode.toLowerCase().equals(userCode)){ // 验证码正确
             session.removeAttribute("code");
             if (isExist(newUser.getUsername())) {
                 return KJDSResult.build(500,"用户名已存在");
@@ -70,9 +70,9 @@ public class SysUserServiceImp implements SysUserService {
             newUser.setPassword(encryptPassword);
             sysUserMapper.insert(newUser);
             return KJDSResult.ok();
-        /*}else {
+        }else {
             return KJDSResult.build(500,"验证码错误");
-        }*/
+        }
     }
 
     public  boolean isExist(String username){
