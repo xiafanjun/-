@@ -3,11 +3,13 @@ package com.neuedu.kjds.controller.mvo;
 import com.neuedu.kjds.pojo.BrdBrand;
 import com.neuedu.kjds.pojo.SysUser;
 import com.neuedu.kjds.service.mvo.BrdBrandService;
+import com.neuedu.kjds.service.mvo.ImageService;
 import com.neuedu.kjds.util.KJDSResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -20,18 +22,15 @@ public class BrdBrandController {
     @Autowired
     private BrdBrandService brdBrandService;
 
+    @Autowired
+    private ImageService imageService;
+
+    //添加品牌
     @RequestMapping("/addBrdBrand")
     @ResponseBody
-    public KJDSResult addBrdBrand(@RequestBody BrdBrand brdBrand, HttpSession session){
+    public KJDSResult addBrdBrand(@RequestParam(value = "brandName") String brandName, @RequestParam(value = "brandLogo") String brandLogo, HttpSession session){
         System.out.println("测试添加品牌信息controller");
-        SysUser loginUser=(SysUser)session.getAttribute("loginuser");
-        int manId=loginUser.getManBuyerId();
-        brdBrand.setManId(manId);
-        brdBrand.setCreatedBy("system");
-        brdBrand.setLastUpdateBy("system");
-        brdBrand.setCreationDate(new Date());
-        brdBrand.setLastUpdateDate(new Date());
-        boolean flag = brdBrandService.savebrd(brdBrand);
+        boolean flag = brdBrandService.savebrd(brandName,session);
         if (flag) {
             return KJDSResult.ok();
         } else {
