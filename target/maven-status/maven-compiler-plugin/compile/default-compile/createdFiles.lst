@@ -1,5 +1,8 @@
 com\neuedu\kjds\util\KJDSResult.class
 com\neuedu\kjds\service\mvo\ProductService.class
+com\neuedu\kjds\service\ddsp\DrpDropshipPriceService.class
+com\neuedu\kjds\controller\ddsp\DrpDropshipPriceController.class
+com\neuedu\kjds\service\DrpDropshipPrice.class
 com\neuedu\kjds\service\mvo\impl\ManufacturerServiceImpl.class
 com\neuedu\kjds\controller\mvo\BrdBrandController.class
 com\neuedu\kjds\service\mvo\impl\OrderManagementServiceImpl.class
@@ -7,13 +10,13 @@ com\neuedu\kjds\controller\mvo\MvoOrderManagementController.class
 com\neuedu\kjds\pojo\ProductExample$Criterion.class
 com\neuedu\kjds\service\mvo\ManufacturerService.class
 com\neuedu\kjds\pojo\ImgImage.class
+com\neuedu\kjds\pojo\DrpDropshipPrice.class
 com\neuedu\kjds\controller\mvo\ManufacturerController.class
 com\neuedu\kjds\pojo\ManManufacturerExample.class
 com\neuedu\kjds\pojo\ProductExample.class
 com\neuedu\kjds\pojo\SaoSalesOrderExample.class
 com\neuedu\kjds\controller\all\SysUserController.class
 com\neuedu\kjds\service\mvo\impl\ProductServiceImpl.class
-com\neuedu\kjds\mapper\ImgImageMapper.class
 com\neuedu\kjds\pojo\SalSalesOrderLineItemExample.class
 com\neuedu\kjds\pojo\SaoSalesOrderExample$Criteria.class
 com\neuedu\kjds\service\mvo\impl\BrdBrandServiceImpl.class
@@ -52,6 +55,7 @@ com\neuedu\kjds\pojo\ProProductExample.class
 com\neuedu\kjds\pojo\SysUserExample.class
 com\neuedu\kjds\pojo\BrdBrandExample.class
 com\neuedu\kjds\service\mvo\BrdBrandService.class
+com\neuedu\kjds\service\ddsp\impl\DrpDropshipPriceServiceImpl.class
 com\neuedu\kjds\controller\mvo\ProductController.class
 com\neuedu\kjds\mapper\ProductMapper.class
 com\neuedu\kjds\pojo\SysUserExample$Criterion.class
@@ -60,6 +64,7 @@ com\neuedu\kjds\pojo\ProProductExample$Criteria.class
 com\neuedu\kjds\mapper\ManManufacturerMapper.class
 com\neuedu\kjds\pojo\SaoSalesOrderExample$Criterion.class
 com\neuedu\kjds\mapper\SaoSalesOrderMapper.class
+com\neuedu\kjds\mapper\DrpDropshipPriceMapper.class
 com\neuedu\kjds\pojo\SysUser.class
 com\neuedu\kjds\pojo\ProductExample$Criteria.class
 com\neuedu\kjds\pojo\SalSalesOrderLineItemExample$GeneratedCriteria.class

@@ -41,7 +41,7 @@ public class BrdBrandController {
             return KJDSResult.build(500,"添加失败");
         }
     }
-
+    // 更新品牌
     @RequestMapping("/updeteBrdBrand")
     @ResponseBody
     public KJDSResult updeteBrdBrand(@RequestBody BrdBrand brdBrand){
@@ -58,6 +58,7 @@ public class BrdBrandController {
         }
     }
 
+    // 删除品牌
     @RequestMapping("/deleteBrdBrand")
     @ResponseBody
     public KJDSResult deleteBrdBrand(@RequestBody BrdBrand brdBrand){
